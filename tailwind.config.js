@@ -13,7 +13,6 @@ export default {
       colors: {
         "light": "#D0C2CF",
         "dark": "#17091A",
-        "mid": "#4E4385",
         "semi": "#52344B",
       },
     },

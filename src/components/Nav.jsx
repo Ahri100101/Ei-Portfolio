@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Logo from "../assets/Ariz-Logo.png"
 
 const Nav = () => {
     let Links = [
-        { name: "Home", link: "/#home" },
-        { name: "About", link: "/#about" },
-        { name: "Skills", link: "/#skills" },
-        { name: "Designs", link: "/#designs" },
-        { name: "Certificates", link: "/#certs" },
-        { name: "Contact", link: "/#contact" },
+        { name: "Home", link: "#home" },
+        { name: "About", link: "#about" },
+        { name: "Skills", link: "#skills" },
+        { name: "Designs", link: "#designs" },
+        { name: "Certificates", link: "#certs" },
+        { name: "Contact", link: "#contact" },
     ];
-    let [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState(null);
+    const navRef = useRef(null);
+
+    const scrollToSection = (link) => {
+        const section = document.querySelector(link);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+            setActiveSection(link);
+            setOpen(false);
+        }
+    };
 
     return (
         <div className="w-full fixed top-0 left-0">
@@ -23,13 +34,22 @@ const Nav = () => {
                               md:hidden">
                     <ion-icon name={open ? "close" : "menu"}></ion-icon>
                 </div>
-                <ul className={`absolute z-[-1] left-0 w-full bg-white bg-opacity-5 backdrop-filter backdrop-blur-sm rounded-lg text-end pt-7 p-5 transition-all duration-500 ease-in ${open ? "top-10" : "top-[-500px]"}
+                <ul ref={navRef} className={`absolute z-[-1] left-0 w-full bg-white bg-opacity-5 backdrop-filter backdrop-blur-sm rounded-lg text-end pt-7 p-5 transition-all duration-500 ease-in ${open ? "top-10" : "top-[-500px]"}
                                md:flex md:items-center md:static md:z-auto md:w-auto md:bg-transparent md:p-0`}>
                     {
                         Links.map((link) => (
                             <li key={link.name} className="text-lg py-3 
-                                                           md:ml-12 md:my-0 md:pt-0">
-                                <a href={link.link} className="font-font1 font-medium text-white hover:text-mid duration-500">{link.name}</a>
+                                                           md:ml-12 md:py-0">
+                                <a
+                                    href={link.link}
+                                    className={`font-font1 font-medium text-white hover:text-semi duration-500 ${activeSection === link.link ? 'active' : ''}`}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollToSection(link.link);
+                                    }}
+                                >
+                                    {link.name}
+                                </a>
                             </li>
                         ))
                     }
