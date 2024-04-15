@@ -25,12 +25,12 @@ const About = () => {
     }, []);
 
     return (
-        <div className="p-5 pt-16 w-full h-auto" id="about">
-            <div className="text-center text-xl font-font1 text-white font-bold
+        <div className="p-5 pt-14 w-full h-auto" id="about">
+            <div className="text-center text-2xl font-font1 text-light font-bold
                             md:hidden">
                 <p>ABOUT</p>
             </div>
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center py-6">
                 <img src={ArizAbt} alt="Ariz Ann's Photo" className="w-80 h-auto" />
             </div>
             <div className="flex flex-col text-justify font-font1 text-white">
