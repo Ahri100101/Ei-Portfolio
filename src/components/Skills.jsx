@@ -53,7 +53,7 @@ const Skills = () => {
 
     const renderLanguage = (lang) => {
         return (
-            <div className="flex flex-wrap justify-center gap-x-5 text-white w-full md:justify-start">
+            <div className="flex flex-wrap justify-center gap-x-5 text-white w-full md:justify-start md:gap-x-3">
                 {lang.map((item, index) => (
                     <div key={index} className="bg-gradient-to-b from-zinc-700 to-dark border-[1px] w-[7rem] h-auto p-2 rounded-xl mb-3">
                         <p className="font-bold text-sm text-center">{item.skill}</p>
